@@ -8,6 +8,8 @@ namespace BandMate.Domain.Persistence.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<PasswordResetRequest> builder)
         {
+            builder.ToTable("PasswordResetRequest");
+
             builder.HasKey(p => p.PasswordResetRequestID);
             
             builder.Property(e => e.Token)

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bandmate.Domain.Migrations
 {
     [DbContext(typeof(BandMateContext))]
-    [Migration("20221113044442_InitialCreate")]
+    [Migration("20221113045803_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -71,7 +71,7 @@ namespace Bandmate.Domain.Migrations
 
                     b.HasKey("AccountID");
 
-                    b.ToTable("Accounts");
+                    b.ToTable("Account", (string)null);
                 });
 
             modelBuilder.Entity("BandMate.Domain.Core.Models.AccountCredential", b =>
@@ -145,7 +145,7 @@ namespace Bandmate.Domain.Migrations
 
                     b.HasKey("AddressID");
 
-                    b.ToTable("Addresses");
+                    b.ToTable("Address", (string)null);
                 });
 
             modelBuilder.Entity("BandMate.Domain.Core.Models.Band", b =>
@@ -162,7 +162,7 @@ namespace Bandmate.Domain.Migrations
 
                     b.HasKey("BandID");
 
-                    b.ToTable("Bands");
+                    b.ToTable("Band", (string)null);
                 });
 
             modelBuilder.Entity("BandMate.Domain.Core.Models.BandAccount", b =>
@@ -182,7 +182,7 @@ namespace Bandmate.Domain.Migrations
 
                     b.HasIndex("AccountID");
 
-                    b.ToTable("BandAccounts");
+                    b.ToTable("BandAccount", (string)null);
                 });
 
             modelBuilder.Entity("BandMate.Domain.Core.Models.BandName", b =>
@@ -206,7 +206,7 @@ namespace Bandmate.Domain.Migrations
 
                     b.HasIndex("BandID");
 
-                    b.ToTable("BandNames");
+                    b.ToTable("BandName", (string)null);
                 });
 
             modelBuilder.Entity("BandMate.Domain.Core.Models.Election", b =>
@@ -241,7 +241,7 @@ namespace Bandmate.Domain.Migrations
 
                     b.HasIndex("BandID");
 
-                    b.ToTable("Elections");
+                    b.ToTable("Election", (string)null);
                 });
 
             modelBuilder.Entity("BandMate.Domain.Core.Models.ElectionSong", b =>
@@ -258,7 +258,7 @@ namespace Bandmate.Domain.Migrations
 
                     b.HasIndex("SongID");
 
-                    b.ToTable("ElectionSong");
+                    b.ToTable("ElectionSong", (string)null);
                 });
 
             modelBuilder.Entity("BandMate.Domain.Core.Models.ElectionVote", b =>
@@ -284,7 +284,7 @@ namespace Bandmate.Domain.Migrations
 
                     b.HasIndex("SongID");
 
-                    b.ToTable("ElectionVotes");
+                    b.ToTable("ElectionVote", (string)null);
                 });
 
             modelBuilder.Entity("BandMate.Domain.Core.Models.Gig", b =>
@@ -318,7 +318,7 @@ namespace Bandmate.Domain.Migrations
 
                     b.HasIndex("VenueID");
 
-                    b.ToTable("Gigs");
+                    b.ToTable("Gig", (string)null);
                 });
 
             modelBuilder.Entity("BandMate.Domain.Core.Models.PasswordResetRequest", b =>
@@ -357,7 +357,7 @@ namespace Bandmate.Domain.Migrations
 
                     b.HasIndex("Token");
 
-                    b.ToTable("PasswordResetRequests");
+                    b.ToTable("PasswordResetRequest", (string)null);
                 });
 
             modelBuilder.Entity("BandMate.Domain.Core.Models.Rating", b =>
@@ -386,7 +386,7 @@ namespace Bandmate.Domain.Migrations
 
                     b.HasIndex("SongID");
 
-                    b.ToTable("Ratings");
+                    b.ToTable("Rating", (string)null);
                 });
 
             modelBuilder.Entity("BandMate.Domain.Core.Models.Role", b =>
@@ -436,7 +436,7 @@ namespace Bandmate.Domain.Migrations
 
                     b.HasIndex("BandID");
 
-                    b.ToTable("SetLists");
+                    b.ToTable("SetList", (string)null);
                 });
 
             modelBuilder.Entity("BandMate.Domain.Core.Models.SetListItem", b =>
@@ -466,7 +466,7 @@ namespace Bandmate.Domain.Migrations
 
                     b.HasIndex("SongID");
 
-                    b.ToTable("SetListItems");
+                    b.ToTable("SetListItem", (string)null);
                 });
 
             modelBuilder.Entity("BandMate.Domain.Core.Models.Song", b =>
@@ -543,7 +543,7 @@ namespace Bandmate.Domain.Migrations
 
                     b.HasIndex("SongListTypeID");
 
-                    b.ToTable("Songs");
+                    b.ToTable("Song", (string)null);
                 });
 
             modelBuilder.Entity("BandMate.Domain.Core.Models.SongAccount", b =>
@@ -564,7 +564,7 @@ namespace Bandmate.Domain.Migrations
 
                     b.HasIndex("AccountID");
 
-                    b.ToTable("SongAccounts");
+                    b.ToTable("SongAccount", (string)null);
                 });
 
             modelBuilder.Entity("BandMate.Domain.Core.Models.SongListType", b =>
@@ -589,7 +589,7 @@ namespace Bandmate.Domain.Migrations
 
                     b.HasIndex("BandID");
 
-                    b.ToTable("SongListTypes");
+                    b.ToTable("SongListType", (string)null);
                 });
 
             modelBuilder.Entity("BandMate.Domain.Core.Models.Venue", b =>
@@ -615,7 +615,7 @@ namespace Bandmate.Domain.Migrations
 
                     b.HasIndex("AddressID");
 
-                    b.ToTable("Venues");
+                    b.ToTable("Venue", (string)null);
                 });
 
             modelBuilder.Entity("AccountRole", b =>

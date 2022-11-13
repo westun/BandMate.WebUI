@@ -10,7 +10,7 @@ namespace Bandmate.Domain.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Accounts",
+                name: "Account",
                 columns: table => new
                 {
                     AccountID = table.Column<int>(type: "int", nullable: false)
@@ -23,11 +23,11 @@ namespace Bandmate.Domain.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Accounts", x => x.AccountID);
+                    table.PrimaryKey("PK_Account", x => x.AccountID);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Addresses",
+                name: "Address",
                 columns: table => new
                 {
                     AddressID = table.Column<int>(type: "int", nullable: false)
@@ -42,11 +42,11 @@ namespace Bandmate.Domain.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Addresses", x => x.AddressID);
+                    table.PrimaryKey("PK_Address", x => x.AddressID);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Bands",
+                name: "Band",
                 columns: table => new
                 {
                     BandID = table.Column<int>(type: "int", nullable: false)
@@ -55,7 +55,7 @@ namespace Bandmate.Domain.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Bands", x => x.BandID);
+                    table.PrimaryKey("PK_Band", x => x.BandID);
                 });
 
             migrationBuilder.CreateTable(
@@ -87,15 +87,15 @@ namespace Bandmate.Domain.Migrations
                 {
                     table.PrimaryKey("PK_AccountCredential", x => x.AccountCredentialID);
                     table.ForeignKey(
-                        name: "FK_AccountCredential_Accounts_AccountID",
+                        name: "FK_AccountCredential_Account_AccountID",
                         column: x => x.AccountID,
-                        principalTable: "Accounts",
+                        principalTable: "Account",
                         principalColumn: "AccountID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "PasswordResetRequests",
+                name: "PasswordResetRequest",
                 columns: table => new
                 {
                     PasswordResetRequestID = table.Column<int>(type: "int", nullable: false)
@@ -109,17 +109,17 @@ namespace Bandmate.Domain.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PasswordResetRequests", x => x.PasswordResetRequestID);
+                    table.PrimaryKey("PK_PasswordResetRequest", x => x.PasswordResetRequestID);
                     table.ForeignKey(
-                        name: "FK_PasswordResetRequests_Accounts_AccountID",
+                        name: "FK_PasswordResetRequest_Account_AccountID",
                         column: x => x.AccountID,
-                        principalTable: "Accounts",
+                        principalTable: "Account",
                         principalColumn: "AccountID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Venues",
+                name: "Venue",
                 columns: table => new
                 {
                     VenueID = table.Column<int>(type: "int", nullable: false)
@@ -130,17 +130,17 @@ namespace Bandmate.Domain.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Venues", x => x.VenueID);
+                    table.PrimaryKey("PK_Venue", x => x.VenueID);
                     table.ForeignKey(
-                        name: "FK_Venues_Addresses_AddressID",
+                        name: "FK_Venue_Address_AddressID",
                         column: x => x.AddressID,
-                        principalTable: "Addresses",
+                        principalTable: "Address",
                         principalColumn: "AddressID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "BandAccounts",
+                name: "BandAccount",
                 columns: table => new
                 {
                     BandID = table.Column<int>(type: "int", nullable: false),
@@ -149,23 +149,23 @@ namespace Bandmate.Domain.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BandAccounts", x => new { x.BandID, x.AccountID });
+                    table.PrimaryKey("PK_BandAccount", x => new { x.BandID, x.AccountID });
                     table.ForeignKey(
-                        name: "FK_BandAccounts_Accounts_AccountID",
+                        name: "FK_BandAccount_Account_AccountID",
                         column: x => x.AccountID,
-                        principalTable: "Accounts",
+                        principalTable: "Account",
                         principalColumn: "AccountID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_BandAccounts_Bands_BandID",
+                        name: "FK_BandAccount_Band_BandID",
                         column: x => x.BandID,
-                        principalTable: "Bands",
+                        principalTable: "Band",
                         principalColumn: "BandID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "BandNames",
+                name: "BandName",
                 columns: table => new
                 {
                     BandNameID = table.Column<int>(type: "int", nullable: false)
@@ -175,17 +175,17 @@ namespace Bandmate.Domain.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BandNames", x => x.BandNameID);
+                    table.PrimaryKey("PK_BandName", x => x.BandNameID);
                     table.ForeignKey(
-                        name: "FK_BandNames_Bands_BandID",
+                        name: "FK_BandName_Band_BandID",
                         column: x => x.BandID,
-                        principalTable: "Bands",
+                        principalTable: "Band",
                         principalColumn: "BandID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Elections",
+                name: "Election",
                 columns: table => new
                 {
                     ElectionID = table.Column<int>(type: "int", nullable: false)
@@ -199,17 +199,17 @@ namespace Bandmate.Domain.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Elections", x => x.ElectionID);
+                    table.PrimaryKey("PK_Election", x => x.ElectionID);
                     table.ForeignKey(
-                        name: "FK_Elections_Bands_BandID",
+                        name: "FK_Election_Band_BandID",
                         column: x => x.BandID,
-                        principalTable: "Bands",
+                        principalTable: "Band",
                         principalColumn: "BandID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "SetLists",
+                name: "SetList",
                 columns: table => new
                 {
                     SetListID = table.Column<int>(type: "int", nullable: false)
@@ -222,23 +222,23 @@ namespace Bandmate.Domain.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SetLists", x => x.SetListID);
+                    table.PrimaryKey("PK_SetList", x => x.SetListID);
                     table.ForeignKey(
-                        name: "FK_SetLists_Accounts_AccountID",
+                        name: "FK_SetList_Account_AccountID",
                         column: x => x.AccountID,
-                        principalTable: "Accounts",
+                        principalTable: "Account",
                         principalColumn: "AccountID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_SetLists_Bands_BandID",
+                        name: "FK_SetList_Band_BandID",
                         column: x => x.BandID,
-                        principalTable: "Bands",
+                        principalTable: "Band",
                         principalColumn: "BandID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "SongListTypes",
+                name: "SongListType",
                 columns: table => new
                 {
                     SongListTypeID = table.Column<int>(type: "int", nullable: false)
@@ -249,11 +249,11 @@ namespace Bandmate.Domain.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SongListTypes", x => x.SongListTypeID);
+                    table.PrimaryKey("PK_SongListType", x => x.SongListTypeID);
                     table.ForeignKey(
-                        name: "FK_SongListTypes_Bands_BandID",
+                        name: "FK_SongListType_Band_BandID",
                         column: x => x.BandID,
-                        principalTable: "Bands",
+                        principalTable: "Band",
                         principalColumn: "BandID",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -269,9 +269,9 @@ namespace Bandmate.Domain.Migrations
                 {
                     table.PrimaryKey("PK_AccountRole", x => new { x.AccountsAccountID, x.RolesRoleID });
                     table.ForeignKey(
-                        name: "FK_AccountRole_Accounts_AccountsAccountID",
+                        name: "FK_AccountRole_Account_AccountsAccountID",
                         column: x => x.AccountsAccountID,
-                        principalTable: "Accounts",
+                        principalTable: "Account",
                         principalColumn: "AccountID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -283,7 +283,7 @@ namespace Bandmate.Domain.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Gigs",
+                name: "Gig",
                 columns: table => new
                 {
                     GigID = table.Column<int>(type: "int", nullable: false)
@@ -296,28 +296,28 @@ namespace Bandmate.Domain.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Gigs", x => x.GigID);
+                    table.PrimaryKey("PK_Gig", x => x.GigID);
                     table.ForeignKey(
-                        name: "FK_Gigs_Bands_BandID",
+                        name: "FK_Gig_Band_BandID",
                         column: x => x.BandID,
-                        principalTable: "Bands",
+                        principalTable: "Band",
                         principalColumn: "BandID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Gigs_SetLists_SetListID",
+                        name: "FK_Gig_SetList_SetListID",
                         column: x => x.SetListID,
-                        principalTable: "SetLists",
+                        principalTable: "SetList",
                         principalColumn: "SetListID");
                     table.ForeignKey(
-                        name: "FK_Gigs_Venues_VenueID",
+                        name: "FK_Gig_Venue_VenueID",
                         column: x => x.VenueID,
-                        principalTable: "Venues",
+                        principalTable: "Venue",
                         principalColumn: "VenueID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Songs",
+                name: "Song",
                 columns: table => new
                 {
                     SongID = table.Column<int>(type: "int", nullable: false)
@@ -341,17 +341,17 @@ namespace Bandmate.Domain.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Songs", x => x.SongID);
+                    table.PrimaryKey("PK_Song", x => x.SongID);
                     table.ForeignKey(
-                        name: "FK_Songs_Bands_BandID",
+                        name: "FK_Song_Band_BandID",
                         column: x => x.BandID,
-                        principalTable: "Bands",
+                        principalTable: "Band",
                         principalColumn: "BandID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Songs_SongListTypes_SongListTypeID",
+                        name: "FK_Song_SongListType_SongListTypeID",
                         column: x => x.SongListTypeID,
-                        principalTable: "SongListTypes",
+                        principalTable: "SongListType",
                         principalColumn: "SongListTypeID");
                 });
 
@@ -366,19 +366,19 @@ namespace Bandmate.Domain.Migrations
                 {
                     table.PrimaryKey("PK_ElectionSong", x => new { x.ElectionID, x.SongID });
                     table.ForeignKey(
-                        name: "FK_ElectionSong_Elections_ElectionID",
+                        name: "FK_ElectionSong_Election_ElectionID",
                         column: x => x.ElectionID,
-                        principalTable: "Elections",
+                        principalTable: "Election",
                         principalColumn: "ElectionID");
                     table.ForeignKey(
-                        name: "FK_ElectionSong_Songs_SongID",
+                        name: "FK_ElectionSong_Song_SongID",
                         column: x => x.SongID,
-                        principalTable: "Songs",
+                        principalTable: "Song",
                         principalColumn: "SongID");
                 });
 
             migrationBuilder.CreateTable(
-                name: "ElectionVotes",
+                name: "ElectionVote",
                 columns: table => new
                 {
                     ElectionID = table.Column<int>(type: "int", nullable: false),
@@ -388,26 +388,26 @@ namespace Bandmate.Domain.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ElectionVotes", x => new { x.ElectionID, x.SongID, x.AccountID });
+                    table.PrimaryKey("PK_ElectionVote", x => new { x.ElectionID, x.SongID, x.AccountID });
                     table.ForeignKey(
-                        name: "FK_ElectionVotes_Accounts_AccountID",
+                        name: "FK_ElectionVote_Account_AccountID",
                         column: x => x.AccountID,
-                        principalTable: "Accounts",
+                        principalTable: "Account",
                         principalColumn: "AccountID");
                     table.ForeignKey(
-                        name: "FK_ElectionVotes_Elections_ElectionID",
+                        name: "FK_ElectionVote_Election_ElectionID",
                         column: x => x.ElectionID,
-                        principalTable: "Elections",
+                        principalTable: "Election",
                         principalColumn: "ElectionID");
                     table.ForeignKey(
-                        name: "FK_ElectionVotes_Songs_SongID",
+                        name: "FK_ElectionVote_Song_SongID",
                         column: x => x.SongID,
-                        principalTable: "Songs",
+                        principalTable: "Song",
                         principalColumn: "SongID");
                 });
 
             migrationBuilder.CreateTable(
-                name: "Ratings",
+                name: "Rating",
                 columns: table => new
                 {
                     RatingID = table.Column<int>(type: "int", nullable: false)
@@ -419,23 +419,23 @@ namespace Bandmate.Domain.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Ratings", x => x.RatingID);
+                    table.PrimaryKey("PK_Rating", x => x.RatingID);
                     table.ForeignKey(
-                        name: "FK_Ratings_Accounts_AccountID",
+                        name: "FK_Rating_Account_AccountID",
                         column: x => x.AccountID,
-                        principalTable: "Accounts",
+                        principalTable: "Account",
                         principalColumn: "AccountID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Ratings_Songs_SongID",
+                        name: "FK_Rating_Song_SongID",
                         column: x => x.SongID,
-                        principalTable: "Songs",
+                        principalTable: "Song",
                         principalColumn: "SongID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "SetListItems",
+                name: "SetListItem",
                 columns: table => new
                 {
                     SetListItemID = table.Column<int>(type: "int", nullable: false)
@@ -447,22 +447,22 @@ namespace Bandmate.Domain.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SetListItems", x => x.SetListItemID);
+                    table.PrimaryKey("PK_SetListItem", x => x.SetListItemID);
                     table.ForeignKey(
-                        name: "FK_SetListItems_SetLists_SetListID",
+                        name: "FK_SetListItem_SetList_SetListID",
                         column: x => x.SetListID,
-                        principalTable: "SetLists",
+                        principalTable: "SetList",
                         principalColumn: "SetListID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_SetListItems_Songs_SongID",
+                        name: "FK_SetListItem_Song_SongID",
                         column: x => x.SongID,
-                        principalTable: "Songs",
+                        principalTable: "Song",
                         principalColumn: "SongID");
                 });
 
             migrationBuilder.CreateTable(
-                name: "SongAccounts",
+                name: "SongAccount",
                 columns: table => new
                 {
                     SongID = table.Column<int>(type: "int", nullable: false),
@@ -471,17 +471,17 @@ namespace Bandmate.Domain.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SongAccounts", x => new { x.SongID, x.AccountID });
+                    table.PrimaryKey("PK_SongAccount", x => new { x.SongID, x.AccountID });
                     table.ForeignKey(
-                        name: "FK_SongAccounts_Accounts_AccountID",
+                        name: "FK_SongAccount_Account_AccountID",
                         column: x => x.AccountID,
-                        principalTable: "Accounts",
+                        principalTable: "Account",
                         principalColumn: "AccountID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_SongAccounts_Songs_SongID",
+                        name: "FK_SongAccount_Song_SongID",
                         column: x => x.SongID,
-                        principalTable: "Songs",
+                        principalTable: "Song",
                         principalColumn: "SongID",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -497,18 +497,18 @@ namespace Bandmate.Domain.Migrations
                 column: "RolesRoleID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BandAccounts_AccountID",
-                table: "BandAccounts",
+                name: "IX_BandAccount_AccountID",
+                table: "BandAccount",
                 column: "AccountID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BandNames_BandID",
-                table: "BandNames",
+                name: "IX_BandName_BandID",
+                table: "BandName",
                 column: "BandID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Elections_BandID",
-                table: "Elections",
+                name: "IX_Election_BandID",
+                table: "Election",
                 column: "BandID");
 
             migrationBuilder.CreateIndex(
@@ -517,93 +517,93 @@ namespace Bandmate.Domain.Migrations
                 column: "SongID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ElectionVotes_AccountID",
-                table: "ElectionVotes",
+                name: "IX_ElectionVote_AccountID",
+                table: "ElectionVote",
                 column: "AccountID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ElectionVotes_SongID",
-                table: "ElectionVotes",
+                name: "IX_ElectionVote_SongID",
+                table: "ElectionVote",
                 column: "SongID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Gigs_BandID",
-                table: "Gigs",
+                name: "IX_Gig_BandID",
+                table: "Gig",
                 column: "BandID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Gigs_SetListID",
-                table: "Gigs",
+                name: "IX_Gig_SetListID",
+                table: "Gig",
                 column: "SetListID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Gigs_VenueID",
-                table: "Gigs",
+                name: "IX_Gig_VenueID",
+                table: "Gig",
                 column: "VenueID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PasswordResetRequests_AccountID",
-                table: "PasswordResetRequests",
+                name: "IX_PasswordResetRequest_AccountID",
+                table: "PasswordResetRequest",
                 column: "AccountID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PasswordResetRequests_Token",
-                table: "PasswordResetRequests",
+                name: "IX_PasswordResetRequest_Token",
+                table: "PasswordResetRequest",
                 column: "Token");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Ratings_AccountID",
-                table: "Ratings",
+                name: "IX_Rating_AccountID",
+                table: "Rating",
                 column: "AccountID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Ratings_SongID",
-                table: "Ratings",
+                name: "IX_Rating_SongID",
+                table: "Rating",
                 column: "SongID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SetListItems_SetListID",
-                table: "SetListItems",
+                name: "IX_SetList_AccountID",
+                table: "SetList",
+                column: "AccountID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SetList_BandID",
+                table: "SetList",
+                column: "BandID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SetListItem_SetListID",
+                table: "SetListItem",
                 column: "SetListID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SetListItems_SongID",
-                table: "SetListItems",
+                name: "IX_SetListItem_SongID",
+                table: "SetListItem",
                 column: "SongID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SetLists_AccountID",
-                table: "SetLists",
-                column: "AccountID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_SetLists_BandID",
-                table: "SetLists",
+                name: "IX_Song_BandID",
+                table: "Song",
                 column: "BandID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SongAccounts_AccountID",
-                table: "SongAccounts",
-                column: "AccountID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_SongListTypes_BandID",
-                table: "SongListTypes",
-                column: "BandID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Songs_BandID",
-                table: "Songs",
-                column: "BandID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Songs_SongListTypeID",
-                table: "Songs",
+                name: "IX_Song_SongListTypeID",
+                table: "Song",
                 column: "SongListTypeID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Venues_AddressID",
-                table: "Venues",
+                name: "IX_SongAccount_AccountID",
+                table: "SongAccount",
+                column: "AccountID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SongListType_BandID",
+                table: "SongListType",
+                column: "BandID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Venue_AddressID",
+                table: "Venue",
                 column: "AddressID");
         }
 
@@ -616,58 +616,58 @@ namespace Bandmate.Domain.Migrations
                 name: "AccountRole");
 
             migrationBuilder.DropTable(
-                name: "BandAccounts");
+                name: "BandAccount");
 
             migrationBuilder.DropTable(
-                name: "BandNames");
+                name: "BandName");
 
             migrationBuilder.DropTable(
                 name: "ElectionSong");
 
             migrationBuilder.DropTable(
-                name: "ElectionVotes");
+                name: "ElectionVote");
 
             migrationBuilder.DropTable(
-                name: "Gigs");
+                name: "Gig");
 
             migrationBuilder.DropTable(
-                name: "PasswordResetRequests");
+                name: "PasswordResetRequest");
 
             migrationBuilder.DropTable(
-                name: "Ratings");
+                name: "Rating");
 
             migrationBuilder.DropTable(
-                name: "SetListItems");
+                name: "SetListItem");
 
             migrationBuilder.DropTable(
-                name: "SongAccounts");
+                name: "SongAccount");
 
             migrationBuilder.DropTable(
                 name: "Role");
 
             migrationBuilder.DropTable(
-                name: "Elections");
+                name: "Election");
 
             migrationBuilder.DropTable(
-                name: "Venues");
+                name: "Venue");
 
             migrationBuilder.DropTable(
-                name: "SetLists");
+                name: "SetList");
 
             migrationBuilder.DropTable(
-                name: "Songs");
+                name: "Song");
 
             migrationBuilder.DropTable(
-                name: "Addresses");
+                name: "Address");
 
             migrationBuilder.DropTable(
-                name: "Accounts");
+                name: "Account");
 
             migrationBuilder.DropTable(
-                name: "SongListTypes");
+                name: "SongListType");
 
             migrationBuilder.DropTable(
-                name: "Bands");
+                name: "Band");
         }
     }
 }

@@ -33,9 +33,10 @@ namespace BandMate.Domain.Persistence
         {
             base.OnModelCreating(modelBuilder);
 
-            //modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Entity<ElectionVote>(eb =>
             {
+                eb.ToTable("ElectionVote");
+
                 eb.HasOne(ev => ev.Election)
                     .WithMany(ev => ev.ElectionVotes)
                     .OnDelete(DeleteBehavior.NoAction);
@@ -49,42 +50,69 @@ namespace BandMate.Domain.Persistence
                     .OnDelete(DeleteBehavior.NoAction);
             });
 
-            //modelBuilder.Entity<ElectionVote>().HasRequired(x => x.Election).WithMany(e => e.ElectionVotes).WillCascadeOnDelete(false);
-            //modelBuilder.Entity<ElectionVote>().HasRequired(x => x.Account).WithMany(a => a.ElectionVotes).WillCascadeOnDelete(false);
-            //modelBuilder.Entity<ElectionVote>().HasRequired(x => x.Song).WithMany(s => s.ElectionVotes).WillCascadeOnDelete(false);
-
             modelBuilder.Entity<Song>()
+                .ToTable("Song")
                 .HasMany(s => s.ElectionSongs)
                 .WithOne(es => es.Song)
                 .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<Election>()
+                .ToTable("Election")
                 .HasMany(e => e.ElectionSongs)
                 .WithOne(e => e.Election)
                 .OnDelete(DeleteBehavior.NoAction);
-
-            //modelBuilder.Configurations.Add(new PasswordResetRequestConfiguration());
 
             new PasswordResetRequestConfiguration()
                 .Configure(modelBuilder.Entity<PasswordResetRequest>());
 
             modelBuilder.Entity<BandAccount>()
+                .ToTable("BandAccount")
                 .HasKey(ba => new { ba.BandID, ba.AccountID });
 
             modelBuilder.Entity<ElectionSong>()
+                .ToTable("ElectionSong")
                 .HasKey(es => new { es.ElectionID, es.SongID });
 
             modelBuilder.Entity<ElectionVote>()
+                .ToTable("ElectionVote")
                 .HasKey(ev => new { ev.ElectionID, ev.SongID, ev.AccountID });
 
             modelBuilder.Entity<SongAccount>()
+                .ToTable("SongAccount")
                 .HasKey(sa => new { sa.SongID, sa.AccountID });
 
             modelBuilder.Entity<SetListItem>()
+                .ToTable("SetListItem")
                 .HasOne(sli => sli.Song)
                 .WithMany(s => s.SetListItems)
                 .OnDelete(DeleteBehavior.NoAction);
-                
+
+            modelBuilder.Entity<Account>()
+                .ToTable("Account");
+
+            modelBuilder.Entity<Address>()
+                .ToTable("Address");
+
+            modelBuilder.Entity<BandName>()
+                .ToTable("BandName");
+
+            modelBuilder.Entity<Band>()
+                .ToTable("Band");
+
+            modelBuilder.Entity<Gig>()
+                .ToTable("Gig");
+
+            modelBuilder.Entity<Rating>()
+                .ToTable("Rating");
+
+            modelBuilder.Entity<SetList>()
+                .ToTable("SetList");
+
+            modelBuilder.Entity<SongListType>()
+                .ToTable("SongListType");
+
+            modelBuilder.Entity<Venue>()
+                .ToTable("Venue");
         }
 
     }
