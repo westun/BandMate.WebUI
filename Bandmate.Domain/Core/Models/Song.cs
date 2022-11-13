@@ -49,5 +49,6 @@ namespace BandMate.Domain.Core.Models
         public virtual ICollection<ElectionSong> ElectionSongs { get; set; }
         public virtual ICollection<ElectionVote> ElectionVotes { get; set; }
         public virtual ICollection<SongAccount> SongAccounts { get; set; }
+        public virtual ICollection<SetListItem> SetListItems { get; set; }
     }
 }

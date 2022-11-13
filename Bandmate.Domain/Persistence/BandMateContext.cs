@@ -67,6 +67,24 @@ namespace BandMate.Domain.Persistence
 
             new PasswordResetRequestConfiguration()
                 .Configure(modelBuilder.Entity<PasswordResetRequest>());
+
+            modelBuilder.Entity<BandAccount>()
+                .HasKey(ba => new { ba.BandID, ba.AccountID });
+
+            modelBuilder.Entity<ElectionSong>()
+                .HasKey(es => new { es.ElectionID, es.SongID });
+
+            modelBuilder.Entity<ElectionVote>()
+                .HasKey(ev => new { ev.ElectionID, ev.SongID, ev.AccountID });
+
+            modelBuilder.Entity<SongAccount>()
+                .HasKey(sa => new { sa.SongID, sa.AccountID });
+
+            modelBuilder.Entity<SetListItem>()
+                .HasOne(sli => sli.Song)
+                .WithMany(s => s.SetListItems)
+                .OnDelete(DeleteBehavior.NoAction);
+                
         }
 
     }
