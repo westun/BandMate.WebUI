@@ -1,4 +1,6 @@
+using BandMate.Domain.Core;
 using BandMate.Domain.Persistence;
+using BandMate.MusicCatalog.Persistence;
 using BandMate.WebUI.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +26,9 @@ namespace BandMate.WebUI
                 options.UseSqlServer(connectionString));
 
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
+            builder.Services.AddTransient<IArtistRepository, SpotifyArtistRepository>();
 
             var app = builder.Build();
 

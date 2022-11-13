@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Bandmate.Domain\Bandmate.Domain.csproj" />
+    <ProjectReference Include="..\BandMate.MusicCatalog\BandMate.MusicCatalog.csproj" />
   </ItemGroup>
 
 </Project>
