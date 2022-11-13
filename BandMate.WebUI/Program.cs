@@ -1,8 +1,6 @@
 using BandMate.Domain.Core;
 using BandMate.Domain.Persistence;
 using BandMate.MusicCatalog.Persistence;
-using BandMate.WebUI.Data;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace BandMate.WebUI
@@ -26,9 +24,20 @@ namespace BandMate.WebUI
                 options.UseSqlServer(connectionString));
 
             builder.Services.AddControllersWithViews();
+            builder.Services.AddRazorPages();
 
             builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
             builder.Services.AddTransient<IArtistRepository, SpotifyArtistRepository>();
+
+
+            builder.Services.AddTransient<SpotifySettings>(f =>
+            {
+                return new SpotifySettings
+                {
+                    ClientId = builder.Configuration.GetValue<string>("Spotify:ClientId"),
+                    ClientSecret = builder.Configuration.GetValue<string>("Spotify:ClientSecret"),
+                };
+            });
 
             var app = builder.Build();
 
@@ -55,6 +64,7 @@ namespace BandMate.WebUI
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
             app.MapRazorPages();
 
             app.Run();

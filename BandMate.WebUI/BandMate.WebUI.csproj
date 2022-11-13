@@ -9,8 +9,6 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.9" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.9" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.9">
       <PrivateAssets>all</PrivateAssets>
@@ -21,6 +19,10 @@
   <ItemGroup>
     <ProjectReference Include="..\Bandmate.Domain\Bandmate.Domain.csproj" />
     <ProjectReference Include="..\BandMate.MusicCatalog\BandMate.MusicCatalog.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\" />
   </ItemGroup>
 
 </Project>
